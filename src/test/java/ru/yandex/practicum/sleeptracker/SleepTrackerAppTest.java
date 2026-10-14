@@ -24,7 +24,7 @@ class SleepTrackerAppTest {
     @Test
     @DisplayName("Подсчитывает сессии, включая пустой список")
     void countsSessionsIncludingEmptyInput() {
-        assertEquals(0L, value(new SessionCounter(), List.of()));
+        assertEquals(0, value(new SessionCounter(), List.of()));
         assertEquals(2, value(new SessionCounter(), List.of(
                 session("2025-10-01T22:00", "2025-10-02T06:00", SleepQuality.GOOD),
                 session("2025-10-02T22:00", "2025-10-03T06:00", SleepQuality.NORMAL))));
