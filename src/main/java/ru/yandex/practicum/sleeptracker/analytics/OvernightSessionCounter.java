@@ -4,11 +4,11 @@ import ru.yandex.practicum.sleeptracker.model.SleepingSession;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-/** Counts dates whose 00:00–06:00 interval contains no sleep. */
 public class OvernightSessionCounter implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
@@ -34,12 +34,11 @@ public class OvernightSessionCounter implements Function<List<SleepingSession>, 
 
     private LocalDate firstNightDate(List<SleepingSession> sessions) {
         SleepingSession firstSession = sessions.stream()
-                .min((left, right) -> left.getFallTime().compareTo(right.getFallTime()))
+                .min(Comparator.comparing(SleepingSession::getFallTime))
                 .orElseThrow();
         LocalDate startDate = firstSession.getFallTime().toLocalDate();
 
-        // A morning start belongs to the night ending that morning; an afternoon/evening
-        // start makes the following morning the first night to inspect.
+
         return firstSession.getFallTime().getHour() < 12 ? startDate : startDate.plusDays(1);
     }
 

@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/** Finds the most common chronotype among night sleep sessions. */
 public class Chronotype implements Function<List<SleepingSession>, SleepAnalysisResult> {
     private static final LocalTime LATE_BEDTIME = LocalTime.of(23, 0);
     private static final LocalTime EARLY_BEDTIME = LocalTime.of(22, 0);

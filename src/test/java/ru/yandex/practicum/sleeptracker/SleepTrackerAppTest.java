@@ -72,7 +72,7 @@ class SleepTrackerAppTest {
                 session("2025-10-01T22:00", "2025-10-02T06:00", SleepQuality.GOOD),
                 session("2025-10-02T14:00", "2025-10-02T15:00", SleepQuality.NORMAL));
         assertEquals("270 Минут", value(new AverageSession(), sessions));
-        assertEquals("480 Минут", value(new AverageSession(), List.of(sessions.get(0))));
+        assertEquals("480 Минут", value(new AverageSession(), List.of(sessions.getFirst())));
     }
 
     @Test
